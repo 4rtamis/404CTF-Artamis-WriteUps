@@ -19,13 +19,13 @@ Pour en savoir plus sur les prochaines compétitions organisées par le club **H
 
 - **Web**
 
-  - [Fiché JS](./Fich%C3%A9JS/Fich%C3%A9JS.md) - _Introduction_
+  - TODO [Fiché JS](./Fich%C3%A9JS/Fich%C3%A9JS.md) - _Introduction_
 
 - **Renseignement en sources ouvertes**
 
-  - [À l'aube d'un échange](./ALAubeDUnEchange/ALAubeDUnEchange.md) - _Moyen_
-  - [Nous sommes infiltrés !](./NousSommesInfiltr%C3%A9s/NousSommesInfiltr%C3%A9s.md) - _Difficile_
+  - TODO [À l'aube d'un échange](./ALAubeDUnEchange/ALAubeDUnEchange.md) - _Moyen_
+  - TODO [Nous sommes infiltrés !](./NousSommesInfiltr%C3%A9s/NousSommesInfiltr%C3%A9s.md) - _Difficile_
 
 - **Divers**
 
-  - [Je suis une théière](./JeSuisUneTh%C3%A9i%C3%A8re/JeSuisUneTh%C3%A9i%C3%A8re.md) - _Facile_
+  - TODO [Je suis une théière](./JeSuisUneTh%C3%A9i%C3%A8re/JeSuisUneTh%C3%A9i%C3%A8re.md) - _Facile_

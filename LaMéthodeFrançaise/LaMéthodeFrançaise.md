@@ -111,7 +111,7 @@ Pour les pianistes qui veulent en faire leur version, voici la partition de _La 
 
 [Télécharger la partition au format PDF](./La_M%C3%A9thode_Fran%C3%A7aise_Partition.pdf)
 
-<div style="mix-blend-mode: difference;">
+<div style="background-color: #f0f3f5;">
 
 ![](./_files/LaM%C3%A9thodeFran%C3%A7aisePartition-1.svg)
 
