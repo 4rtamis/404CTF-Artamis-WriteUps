@@ -28,4 +28,4 @@ Pour en savoir plus sur les prochaines compétitions organisées par le club **H
 
 - **Divers**
 
-  - TODO [Je suis une théière](./JeSuisUneTh%C3%A9i%C3%A8re/JeSuisUneTh%C3%A9i%C3%A8re.md) - _Facile_
+  - [Je suis une théière](./JeSuisUneTh%C3%A9i%C3%A8re/JeSuisUneTh%C3%A9i%C3%A8re.md) - _Facile_

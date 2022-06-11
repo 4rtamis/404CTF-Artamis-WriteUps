@@ -10,7 +10,7 @@ Format du flag : `404CTF{chaîne de caractères trouvée en leet}`
 
 > Attention, https://ctf.404ctf.fr ne fait PAS partie de la zone de jeu sur laquelle vous pouvez utiliser des méthodes offensives.
 >
-> Le site https://css117.fr n'a rien à voir avec le 404 CTF
+> Le site https://css117.fr n'a rien à voir avec le 404 CTF.
 
 ## Fichiers
 
