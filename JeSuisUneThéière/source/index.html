@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="shortcut icon" href="./favicon.png" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 CTF</title>
+    <link rel="stylesheet" href="css/index.css" />
+  </head>
+  <body>
+    <div class="noise"></div>
+    <div class="overlay"></div>
+    <div class="terminal">
+      <h1>
+        Error <span class="errorcode">418</span>
+        <span><small>(I'm a teapot)</small></span>
+      </h1>
+      <p class="output">
+        Vous êtes perdus ? pour la plateforme du challenge, ça se passe
+        <a href="https://ctf.404ctf.fr">ici</a>!
+      </p>
+
+      <p class="output">
+        Si vous ne savez même pas comment vous avez atterri là et que vous
+        voulez savoir qui nous sommes, jetez un coup d'oeil à
+        <a href="https://404ctf.fr">notre site web de présentation</a>
+      </p>
+
+      <p class="output">
+        <strong>Attention</strong>, seul les URLs de la forme
+        <em>challenge.404ctf.fr</em> ainsi que les liens des challenges web
+        explicitement indiqués font partie du périmètre sur lequel vous avez le
+        droit de lancer les attaques. Toutes les autres URLs, quelles qu'elles
+        soient, sont hors limite de tout type d'attaque (y compris la plateforme
+        de validation des challenges ctf.404ctf.fr).
+      </p>
+      <p class="output">
+        Si vous pensez avoir suivi correctement un lien vers un challenge et que
+        vous vous retrouvez sur cette page, vous pouvez vous addresser aux admin
+        sur <a href="http://discord.404ctf.fr">Discord</a> ou nous envoyer
+        directement un mail à support[at]404ctf.fr et nous vous répondrons dans
+        les meilleurs délais.
+      </p>
+      <p class="output">
+        Si vous avez du temps à perdre, vous pouvez aider cette théière à
+        retrouver son chemin jusqu'à la plaque chauffante. Notez qu'elle fait du
+        thé et pas du café. Notez aussi que le jeu ne fonctionne qu'avec du CSS.
+      </p>
+      <p class="output" style="margin-bottom: 3rem">
+        Placez votre souris sur la case départ en haut à gauche. Lorsque vous
+        survolez une case, des ponts aparaissent autour d'elle de sorte à ce que
+        vous puissiez vous déplacer dessus avec votre curseur d'autant de cases
+        qu'indiqué sur la première. Attention, gardez bien votre curseur sur les
+        cases et les ponts, cela serait dommage de devoir repartir du début !
+        Trouvez un chemin pour rejoindre le centre et vous serez récompensés...
+        Il ne vous restera plus qu'à décoder.
+      </p>
+      <small>Vive le CSS !</small>
+      <div id="maze">
+        <a id="fail" href="#fail"></a>
+        <a class="a0" href="#no">
+          <span></span>
+          <i class="r1"></i>
+        </a>
+        <a class="a1" href="#no">
+          <span></span>
+          <i class="r1"></i>
+          <i class="r2"></i>
+          <b class="b1"></b>
+          <b class="b2"></b>
+          <em class="br1"></em>
+          <em class="br2"></em>
+        </a>
+        <a class="a2" href="#no">
+          <span></span>
+          <i class="r1"></i>
+          <i class="r2"></i>
+          <i class="r3"></i>
+          <b class="b1"></b>
+          <b class="b2"></b>
+          <b class="b3"></b>
+          <em class="br1"></em>
+          <em class="br2"></em>
+          <em class="br3"></em>
+        </a>
+        <a class="a3" href="#no">
+          <span></span>
+          <b class="b1"></b>
+          <b class="b2"></b>
+          <b class="b3"></b>
+          <b class="b4"></b>
+          <b class="b5"></b>
+          <b class="b6"></b>
+        </a>
+        <a class="a4" href="#no">
+          <span></span>
+          <i class="l1"></i>
+          <i class="l2"></i>
+          <i class="l3"></i>
+          <i class="r1"></i>
+          <i class="r2"></i>
+          <i class="r3"></i>
+          <b class="b1"></b>
+          <b class="b2"></b>
+          <b class="b3"></b>
+          <em class="br1"></em>
+          <em class="br2"></em>
+          <em class="br3"></em>
+          <em class="bl1"></em>
+          <em class="bl2"></em>
+          <em class="bl3"></em>
+        </a>
+        <a class="a5" href="#no">
+          <span></span>
+          <b class="b1"></b>
+          <b class="b2"></b>
+          <b class="b3"></b>
+          <b class="b4"></b>
+          <b class="b5"></b>
+          <b class="b6"></b>
+        </a>
+        <a class="a6" href="#no">
+          <span></span>
+          <i class="l1"></i>
+          <i class="l2"></i>
+          <b class="b1"></b>
+          <b class="b2"></b>
+          <em class="bl1"></em>
+          <em class="bl2"></em>
+        </a>
+        <a class="a7" href="#no">
+          <span></span>
+          <i class="l1"></i>
+          <i class="l2"></i>
+          <i class="l3"></i>
+          <b class="b1"></b>
+          <b class="b2"></b>
+          <b class="b3"></b>
+          <em class="bl1"></em>
+          <em class="bl2"></em>
+          <em class="bl3"></em>
+        </a>
+        <a class="b1" href="#no">
+          <span></span>
+          <i class="r1"></i>
+          <i class="r2"></i>
+          <i class="r3"></i>
+          <b class="b1"></b>
+          <b class="b2"></b>
+          <b class="b3"></b>
+          <em class="br1"></em>
+          <em class="br2"></em>
+          <em class="br3"></em>
+        </a>
+        <a class="b2" href="#no">
+          <span></span>
+        </a>
+        <a class="b3" href="#no">
+          <span></span>
+          <i class="r1"></i>
+          <i class="r2"></i>
+          <i class="r3"></i>
+          <b class="b1"></b>
+          <b class="b2"></b>
+          <b class="b3"></b>
+          <em class="br1"></em>
+          <em class="br2"></em>
+          <em class="br3"></em>
+        </a>
+        <a class="b4" href="#no">
+          <span></span>
+          <i class="l1"></i>
+          <i class="l2"></i>
+          <i class="l3"></i>
+          <i class="r1"></i>
+          <i class="r2"></i>
+          <i class="r3"></i>
+          <b class="b1"></b>
+          <b class="b2"></b>
+          <b class="b3"></b>
+          <em class="br1"></em>
+          <em class="br2"></em>
+          <em class="br3"></em>
+          <em class="bl1"></em>
+          <em class="bl2"></em>
+          <em class="bl3"></em>
+        </a>
+        <a class="b5" href="#no">
+          <span></span>
+          <i class="l1"></i>
+          <i class="l2"></i>
+          <i class="l3"></i>
+          <b class="b1"></b>
+          <b class="b2"></b>
+          <b class="b3"></b>
+          <em class="bl1"></em>
+          <em class="bl2"></em>
+          <em class="bl3"></em>
+        </a>
+        <a class="b6" href="#no">
+          <span></span>
+          <i class="l1"></i>
+          <i class="l2"></i>
+          <i class="l3"></i>
+          <b class="b1"></b>
+          <b class="b2"></b>
+          <b class="b3"></b>
+          <em class="bl1"></em>
+          <em class="bl2"></em>
+          <em class="bl3"></em>
+        </a>
+        <a class="b7" href="#no">
+          <span></span>
+          <i class="l1"></i>
+          <i class="l2"></i>
+          <i class="l3"></i>
+          <b class="b1"></b>
+          <b class="b2"></b>
+          <b class="b3"></b>
+          <em class="bl1"></em>
+          <em class="bl2"></em>
+          <em class="bl3"></em>
+        </a>
+        <a class="c1" href="#no">
+          <span></span>
+          <i class="r1"></i>
+          <i class="r2"></i>
+          <i class="r3"></i>
+          <i class="r4"></i>
+          <i class="r5"></i>
+        </a>
+        <a class="c2" href="#no">
+          <span></span>
+          <i class="r1"></i>
+          <i class="r2"></i>
+          <i class="r3"></i>
+          <i class="r4"></i>
+          <b class="b1"></b>
+          <b class="b2"></b>
+          <b class="b3"></b>
+          <b class="b4"></b>
+          <em class="br1"></em>
+          <em class="br2"></em>
+          <em class="br3"></em>
+          <em class="br4"></em>
+        </a>
+        <a class="c3" href="#no">
+          <span></span>
+        </a>
+        <a class="c4" href="#no">
+          <span></span>
+        </a>
+        <a class="c5" href="#no">
+          <span></span>
+          <i class="l1"></i>
+          <i class="l2"></i>
+          <i class="l3"></i>
+          <b class="b1"></b>
+          <b class="b2"></b>
+          <b class="b3"></b>
+          <em class="bl1"></em>
+          <em class="bl2"></em>
+          <em class="bl3"></em>
+        </a>
+        <a class="c6" href="#no">
+          <span></span>
+          <i class="l1"></i>
+          <i class="l2"></i>
+          <i class="l3"></i>
+          <i class="l4"></i>
+          <i class="l5"></i>
+        </a>
+        <a class="c7" href="#no">
+          <span></span>
+          <i class="l1"></i>
+          <b class="t1"></b>
+          <b class="b1"></b>
+          <em class="tl1"></em>
+          <em class="bl1"></em>
+        </a>
+        <a class="d1" href="#no">
+          <span></span>
+          <i class="r1"></i>
+          <i class="r2"></i>
+          <i class="r3"></i>
+          <i class="r4"></i>
+          <i class="r5"></i>
+          <i class="r6"></i>
+        </a>
+        <a class="d2" href="#no">
+          <span></span>
+        </a>
+        <a class="d3" href="#no">
+          <span></span>
+          <i class="l1"></i>
+          <i class="l2"></i>
+          <i class="r1"></i>
+          <i class="r2"></i>
+          <b class="t1"></b>
+          <b class="t2"></b>
+          <b class="b1"></b>
+          <b class="b2"></b>
+          <em class="tr1"></em>
+          <em class="tr2"></em>
+          <em class="tl1"></em>
+          <em class="tl2"></em>
+          <em class="br1"></em>
+          <em class="br2"></em>
+          <em class="bl1"></em>
+          <em class="bl2"></em>
+        </a>
+        <a class="d4" href="#no">
+          <span></span>
+        </a>
+        <a class="d5" href="#no">
+          <span></span>
+          <i class="l1"></i>
+          <i class="l2"></i>
+          <i class="l3"></i>
+          <i class="l4"></i>
+        </a>
+        <a class="d6" href="#no">
+          <span></span>
+          <i class="l1"></i>
+          <i class="r1"></i>
+          <b class="t1"></b>
+          <b class="b1"></b>
+          <em class="tr1"></em>
+          <em class="tl1"></em>
+          <em class="br1"></em>
+          <em class="bl1"></em>
+        </a>
+        <a class="d7" href="#no">
+          <span></span>
+          <i class="l1"></i>
+          <i class="l2"></i>
+          <i class="l3"></i>
+          <i class="l4"></i>
+          <i class="l5"></i>
+        </a>
+        <a class="e1" href="#no">
+          <span></span>
+          <i class="r1"></i>
+          <i class="r2"></i>
+          <i class="r3"></i>
+          <b class="t1"></b>
+          <b class="t2"></b>
+          <b class="t3"></b>
+          <em class="tr1"></em>
+          <em class="tr2"></em>
+          <em class="tr3"></em>
+        </a>
+        <a class="e2" href="#no">
+          <span></span>
+          <i class="r1"></i>
+          <i class="r2"></i>
+          <i class="r3"></i>
+          <i class="r4"></i>
+          <b class="t1"></b>
+          <b class="t2"></b>
+          <b class="t3"></b>
+          <b class="t4"></b>
+          <em class="tr1"></em>
+          <em class="tr2"></em>
+          <em class="tr3"></em>
+          <em class="tr4"></em>
+        </a>
+        <a class="e3" href="#no">
+          <span></span>
+          <i class="r1"></i>
+          <i class="r2"></i>
+          <i class="r3"></i>
+          <b class="t1"></b>
+          <b class="t2"></b>
+          <b class="t3"></b>
+          <em class="tr1"></em>
+          <em class="tr2"></em>
+          <em class="tr3"></em>
+        </a>
+        <a class="e4" href="#no">
+          <span></span>
+          <i class="r1"></i>
+          <i class="r2"></i>
+          <i class="r3"></i>
+          <i class="l1"></i>
+          <i class="l2"></i>
+          <i class="l3"></i>
+          <b class="t1"></b>
+          <b class="t2"></b>
+          <b class="t3"></b>
+          <em class="tl1"></em>
+          <em class="tl2"></em>
+          <em class="tl3"></em>
+          <em class="tr1"></em>
+          <em class="tr2"></em>
+          <em class="tr3"></em>
+        </a>
+        <a class="e5" href="#no">
+          <span></span>
+        </a>
+        <a class="e6" href="#no">
+          <span></span>
+          <i class="l1"></i>
+          <i class="l2"></i>
+          <i class="l3"></i>
+          <b class="t1"></b>
+          <b class="t2"></b>
+          <b class="t3"></b>
+          <em class="tl1"></em>
+          <em class="tl2"></em>
+          <em class="tl3"></em>
+        </a>
+        <a class="e7" href="#no">
+          <span></span>
+          <i class="l1"></i>
+          <i class="l2"></i>
+          <i class="l3"></i>
+          <b class="t1"></b>
+          <b class="t2"></b>
+          <b class="t3"></b>
+          <em class="tl1"></em>
+          <em class="tl2"></em>
+          <em class="tl3"></em>
+        </a>
+        <a class="f1" href="#no">
+          <span></span>
+        </a>
+        <a class="f2" href="#no">
+          <span></span>
+        </a>
+        <a class="f3" href="#no">
+          <span></span>
+        </a>
+        <a class="f4" href="#no">
+          <span></span>
+          <i class="l1"></i>
+          <i class="l2"></i>
+          <i class="r1"></i>
+          <i class="r2"></i>
+          <b class="t1"></b>
+          <b class="t2"></b>
+          <em class="tl1"></em>
+          <em class="tl2"></em>
+          <em class="tr1"></em>
+          <em class="tr2"></em>
+        </a>
+        <a class="f5" href="#no">
+          <span></span>
+        </a>
+        <a class="f6" href="#no">
+          <span></span>
+          <i class="l1"></i>
+          <i class="l2"></i>
+          <b class="t1"></b>
+          <b class="t2"></b>
+          <em class="tl1"></em>
+          <em class="tl2"></em>
+        </a>
+        <a class="f7" href="#no">
+          <span></span>
+          <i class="l1"></i>
+          <i class="l2"></i>
+          <i class="l3"></i>
+          <i class="l4"></i>
+          <i class="l5"></i>
+          <b class="t1"></b>
+          <b class="t2"></b>
+          <b class="t3"></b>
+          <b class="t4"></b>
+          <b class="t5"></b>
+          <em class="tl1"></em>
+          <em class="tl2"></em>
+          <em class="tl3"></em>
+          <em class="tl4"></em>
+          <em class="tl5"></em>
+        </a>
+        <a class="g1" href="#no">
+          <span></span>
+          <i class="r1"></i>
+          <b class="t1"></b>
+          <em class="tr1"></em>
+        </a>
+        <a class="g2" href="#no">
+          <span></span>
+          <i class="r1"></i>
+          <i class="r2"></i>
+          <i class="r3"></i>
+          <b class="t1"></b>
+          <b class="t2"></b>
+          <b class="t3"></b>
+          <em class="tr1"></em>
+          <em class="tr2"></em>
+          <em class="tr3"></em>
+        </a>
+        <a class="g3" href="#no">
+          <span></span>
+          <i class="r1"></i>
+          <i class="r2"></i>
+          <i class="r3"></i>
+          <i class="r4"></i>
+          <b class="t1"></b>
+          <b class="t2"></b>
+          <b class="t3"></b>
+          <b class="t4"></b>
+          <em class="tr1"></em>
+          <em class="tr2"></em>
+          <em class="tr3"></em>
+          <em class="tr4"></em>
+        </a>
+        <a class="g4" href="#no">
+          <span></span>
+          <b class="t1"></b>
+          <b class="t2"></b>
+          <b class="t3"></b>
+          <b class="t4"></b>
+        </a>
+        <a class="g5" href="#no">
+          <span></span>
+          <i class="l1"></i>
+          <i class="l2"></i>
+          <i class="l3"></i>
+          <b class="t1"></b>
+          <b class="t2"></b>
+          <b class="t3"></b>
+          <em class="tl1"></em>
+          <em class="tl2"></em>
+          <em class="tl3"></em>
+        </a>
+        <a class="g6" href="#no">
+          <span></span>
+          <i class="l1"></i>
+          <i class="l2"></i>
+          <i class="l3"></i>
+          <b class="t1"></b>
+          <b class="t2"></b>
+          <b class="t3"></b>
+          <em class="tl1"></em>
+          <em class="tl2"></em>
+          <em class="tl3"></em>
+        </a>
+        <a class="g7" href="#no">
+          <span></span>
+          <i class="l1"></i>
+          <i class="l2"></i>
+          <i class="l3"></i>
+          <i class="l4"></i>
+          <i class="l5"></i>
+          <b class="t1"></b>
+          <b class="t2"></b>
+          <b class="t3"></b>
+          <b class="t4"></b>
+          <b class="t5"></b>
+          <em class="tl1"></em>
+          <em class="tl2"></em>
+          <em class="tl3"></em>
+          <em class="tl4"></em>
+          <em class="tl5"></em>
+        </a>
+      </div>
+    </div>
+  </body>
+</html>

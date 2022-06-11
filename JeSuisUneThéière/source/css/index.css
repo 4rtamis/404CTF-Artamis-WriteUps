@@ -1,0 +1,1167 @@
+@charset "UTF-8";
+@font-face {
+  font-family: "Inconsolata";
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  src: url(../res/Inconsolata.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+html {
+  min-height: 100%;
+  height: 100%;
+}
+
+body {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  height: 100%;
+  background-color: #000000;
+  background-image: radial-gradient(#072d6a, #041607), url(../res/noise.webp);
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: "Inconsolata", Helvetica, sans-serif;
+  font-size: 1.5rem;
+  color: rgba(84, 108, 145, 0.8);
+  text-shadow: 0 0 1ex rgba(6, 30, 69, 0.4), 0 0 2px rgba(255, 255, 255, 0.8);
+  overflow: hidden;
+  margin: 0;
+}
+
+.noise {
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url(../res/noise.webp);
+  background-repeat: auto;
+  background-size: cover;
+  z-index: -1;
+  opacity: 0.02;
+}
+
+.overlay {
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(180deg, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0) 100%);
+  background-size: auto 4px;
+  z-index: 1;
+}
+
+.overlay::before {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-image: -webkit-gradient(linear, left bottom, left top, from(transparent), color-stop(2%, rgba(25, 37, 98, 0.2)), color-stop(3%, rgba(0, 48, 125, 0.4)), color-stop(3%, rgba(12, 27, 104, 0.2)), to(transparent));
+  background-image: linear-gradient(0deg, transparent 0%, rgba(25, 37, 98, 0.2) 2%, rgba(0, 48, 125, 0.4) 3%, rgba(12, 27, 104, 0.2) 3%, transparent 100%);
+  background-repeat: no-repeat;
+  -webkit-animation: scan 7.5s linear 0s infinite;
+          animation: scan 7.5s linear 0s infinite;
+}
+
+@-webkit-keyframes scan {
+  0% {
+    background-position: 0 -100vh;
+  }
+  35%,
+  100% {
+    background-position: 0 100vh;
+  }
+}
+
+@keyframes scan {
+  0% {
+    background-position: 0 -100vh;
+  }
+  35%,
+  100% {
+    background-position: 0 100vh;
+  }
+}
+
+.terminal {
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+  position: absolute;
+  height: auto;
+  width: 100%;
+  max-width: 100%;
+  padding: 4rem;
+  text-transform: uppercase;
+  overflow-y: auto;
+  height: 100%;
+}
+
+.output {
+  color: rgba(84, 108, 145, 0.8);
+  text-shadow: 0 0 1px rgba(6, 30, 69, 0.4), 0 0 2px rgba(255, 255, 255, 0.8);
+}
+
+.output::before {
+  content: "> ";
+}
+
+a {
+  color: #ffffff6e;
+  text-decoration: none;
+}
+
+a::before {
+  content: "[";
+}
+
+a::after {
+  content: "]";
+}
+
+.errorcode {
+  color: white;
+}
+
+small {
+  text-transform: none;
+  font-size: 20px;
+  color: #546c91;
+}
+
+/*MAZE*/
+#maze {
+  left: 100px;
+  width: 520px;
+  height: 520px;
+  background: url(../res/Board.png);
+  background-position: top;
+  background-size: cover;
+  position: relative;
+  margin: 10px 10px 10px 10px;
+}
+
+#maze a {
+  display: block;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  z-index: 10;
+}
+
+#maze a:hover {
+  border: 0;
+  z-index: 500;
+}
+
+#maze a:hover::before {
+  visibility: visible !important;
+}
+
+#maze a:hover::after {
+  visibility: visible !important;
+}
+
+#maze a:hover i {
+  visibility: visible;
+  background: url(../res/BridgeH.png) no-repeat center;
+  background-size: contain;
+  -webkit-filter: saturate(10) brightness(200%) grayscale(1);
+          filter: saturate(10) brightness(200%) grayscale(1);
+}
+
+#maze a:hover b {
+  visibility: visible;
+  background: url(../res/BridgeV.png) no-repeat center;
+  background-size: contain;
+  -webkit-filter: saturate(10) brightness(200%) grayscale(1);
+          filter: saturate(10) brightness(200%) grayscale(1);
+}
+
+#maze a:hover em {
+  visibility: visible;
+  background: url(../res/BridgeD.png) no-repeat center;
+  background-size: contain;
+  -webkit-filter: saturate(10) brightness(200%) grayscale(1);
+          filter: saturate(10) brightness(200%) grayscale(1);
+}
+
+#maze a:hover span {
+  visibility: visible;
+  background: url(../res/Teapot.png) no-repeat center center;
+  background-size: contain;
+}
+
+#maze a:hover#fail {
+  background: #36b5cb url(../res/consigne.png) no-repeat center;
+  background-size: cover;
+  opacity: 0.9;
+  z-index: 600;
+}
+
+#maze a i {
+  visibility: hidden;
+  width: 80px;
+  height: 40px;
+  position: absolute;
+}
+
+#maze a b {
+  visibility: hidden;
+  width: 40px;
+  height: 80px;
+  position: absolute;
+}
+
+#maze a em {
+  visibility: hidden;
+  width: 113.13px;
+  height: 56.56px;
+  position: absolute;
+}
+
+#maze a span {
+  visibility: hidden;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 100;
+}
+
+#maze a::before {
+  content: "";
+  visibility: hidden;
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  font-size: 1.8rem;
+  text-transform: none;
+}
+
+#maze a::after {
+  content: "";
+  visibility: hidden;
+}
+
+#maze a#fail {
+  background: transparent;
+  display: block;
+  width: 540px;
+  height: 540px;
+  position: absolute;
+  left: -10px;
+  top: -10px;
+  z-index: 1;
+}
+
+#maze a.a0 {
+  left: -80px;
+  top: 0px;
+  background: url(../res/Depart.png) no-repeat center;
+  background-size: cover;
+}
+
+#maze a.a0 i {
+  visibility: visible;
+  background: url(../res/BridgeH.png) no-repeat center;
+  background-size: contain;
+}
+
+#maze a.a1 {
+  left: 0px;
+  top: 0px;
+}
+
+#maze a.a1::before {
+  content: "ND";
+  left: 240px;
+  top: 240px;
+}
+
+#maze a.a2 {
+  left: 80px;
+  top: 0px;
+}
+
+#maze a.a2::before {
+  content: "Y2";
+  left: 160px;
+  top: 240px;
+}
+
+#maze a.a3 {
+  left: 160px;
+  top: 0px;
+}
+
+#maze a.a3::before {
+  content: "E4";
+  top: 240px;
+  left: 80px;
+}
+
+#maze a.a4 {
+  left: 240px;
+  top: 0px;
+}
+
+#maze a.a4::before {
+  content: "UD";
+  top: 200px;
+  left: 0px;
+  z-index: 1000;
+}
+
+#maze a.a5 {
+  left: 320px;
+  top: 0px;
+}
+
+#maze a.a5::before {
+  content: "Fm";
+  top: 240px;
+  left: -80px;
+}
+
+#maze a.a6 {
+  left: 400px;
+  top: 0px;
+}
+
+#maze a.a6::before {
+  content: "U0";
+  top: 240px;
+  left: -160px;
+}
+
+#maze a.a7 {
+  left: 480px;
+  top: 0px;
+}
+
+#maze a.a7::before {
+  content: "ZX";
+  top: 240px;
+  left: -240px;
+}
+
+#maze a.b1 {
+  left: 0px;
+  top: 80px;
+}
+
+#maze a.b1::before {
+  content: "9u";
+  left: 240px;
+  top: 160px;
+}
+
+#maze a.b2 {
+  left: 80px;
+  top: 80px;
+}
+
+#maze a.b2::before {
+  content: "aW";
+  left: 160px;
+  top: 160px;
+}
+
+#maze a.b3 {
+  left: 160px;
+  top: 80px;
+}
+
+#maze a.b3::before {
+  content: "f0";
+  left: 80px;
+  top: 160px;
+}
+
+#maze a.b4 {
+  left: 240px;
+  top: 80px;
+}
+
+#maze a.b4::before {
+  content: "KU";
+  left: 0px;
+  top: 160px;
+}
+
+#maze a.b5 {
+  left: 320px;
+  top: 80px;
+}
+
+#maze a.b5::before {
+  content: "df";
+  top: 160px;
+  left: -80px;
+}
+
+#maze a.b6 {
+  left: 400px;
+  top: 80px;
+}
+
+#maze a.b6::before {
+  content: "cn";
+  top: 160px;
+  left: -160px;
+}
+
+#maze a.b7 {
+  left: 480px;
+  top: 80px;
+}
+
+#maze a.b7::before {
+  content: "Pl";
+  top: 160px;
+  left: -240px;
+}
+
+#maze a.c1 {
+  left: 0px;
+  top: 160px;
+}
+
+#maze a.c1::before {
+  content: "L2";
+  left: 240px;
+  top: 80px;
+}
+
+#maze a.c2 {
+  left: 80px;
+  top: 160px;
+}
+
+#maze a.c2::before {
+  content: "ZV";
+  top: 80px;
+  left: 160px;
+}
+
+#maze a.c3 {
+  left: 160px;
+  top: 160px;
+}
+
+#maze a.c3::before {
+  content: "Qw";
+  top: 80px;
+  left: 80px;
+}
+
+#maze a.c4 {
+  left: 240px;
+  top: 160px;
+}
+
+#maze a.c4::before {
+  content: "Xz";
+  top: 80px;
+  left: 0px;
+}
+
+#maze a.c5 {
+  left: 320px;
+  top: 160px;
+}
+
+#maze a.c5::before {
+  content: "R6";
+  top: 80px;
+  left: -80px;
+}
+
+#maze a.c6 {
+  left: 400px;
+  top: 160px;
+}
+
+#maze a.c6::before {
+  content: "Jf";
+  top: 80px;
+  left: -160px;
+}
+
+#maze a.c7 {
+  left: 480px;
+  top: 160px;
+}
+
+#maze a.c7::before {
+  content: "Ff";
+  top: 80px;
+  left: -240px;
+}
+
+#maze a.d1 {
+  left: 0px;
+  top: 240px;
+}
+
+#maze a.d1::before {
+  content: "Cg";
+  left: 240px;
+  top: 0px;
+}
+
+#maze a.d2 {
+  left: 80px;
+  top: 240px;
+}
+
+#maze a.d2::before {
+  content: "Ki";
+  left: 160px;
+  top: 0px;
+}
+
+#maze a.d3 {
+  left: 160px;
+  top: 240px;
+}
+
+#maze a.d3::before {
+  content: "bm";
+  top: 0px;
+  left: 80px;
+}
+
+#maze a.d4 {
+  left: 240px;
+  top: 240px;
+}
+
+#maze a.d4::before {
+  content: "B0";
+  top: 0px;
+  left: 0px;
+  z-index: 1000;
+}
+
+#maze a.d4::after {
+  position: absolute;
+  content: "Bravo ! Je vais pouvoir me faire du thé. Au fait, avez-vous noté les caractères qui sont apparus sur la plaque de cuisson au fur et à mesure du chemin ? Ce serait dommage de devoir tout refaire...";
+  top: 300px;
+  left: -240px;
+  z-index: 1000;
+  width: 520px;
+  display: block;
+  text-align: center;
+  font-size: 1.2rem;
+  padding: 0 0 2rem 0;
+}
+
+#maze a.d5 {
+  left: 320px;
+  top: 240px;
+}
+
+#maze a.d5::before {
+  content: "dX";
+  top: 0px;
+  left: -80px;
+}
+
+#maze a.d6 {
+  left: 400px;
+  top: 240px;
+}
+
+#maze a.d6::before {
+  content: "bT";
+  top: 0px;
+  left: -160px;
+}
+
+#maze a.d7 {
+  left: 480px;
+  top: 240px;
+}
+
+#maze a.d7::before {
+  content: "l6";
+  top: 0px;
+  left: -240px;
+}
+
+#maze a.e1 {
+  left: 0px;
+  top: 320px;
+}
+
+#maze a.e1::before {
+  content: "VF";
+  top: -80px;
+  left: 240px;
+}
+
+#maze a.e2 {
+  left: 80px;
+  top: 320px;
+}
+
+#maze a.e2::before {
+  content: "VG";
+  top: -80px;
+  left: 160px;
+}
+
+#maze a.e3 {
+  left: 160px;
+  top: 320px;
+}
+
+#maze a.e3::before {
+  content: "NE";
+  top: -80px;
+  left: 80px;
+}
+
+#maze a.e4 {
+  left: 240px;
+  top: 320px;
+}
+
+#maze a.e4::before {
+  content: "NU";
+  top: -80px;
+  left: 0px;
+}
+
+#maze a.e5 {
+  left: 320px;
+  top: 320px;
+}
+
+#maze a.e5::before {
+  content: "X1";
+  top: -80px;
+  left: -80px;
+}
+
+#maze a.e6 {
+  left: 400px;
+  top: 320px;
+}
+
+#maze a.e6::before {
+  content: "Ec";
+  top: -80px;
+  left: -160px;
+}
+
+#maze a.e7 {
+  left: 480px;
+  top: 320px;
+}
+
+#maze a.e7::before {
+  content: "Xl";
+  top: -80px;
+  left: -240px;
+}
+
+#maze a.f1 {
+  left: 0px;
+  top: 400px;
+}
+
+#maze a.f1::before {
+  content: "xh";
+  top: -160px;
+  left: 240px;
+}
+
+#maze a.f2 {
+  left: 80px;
+  top: 400px;
+}
+
+#maze a.f2::before {
+  content: "Zm";
+  top: -160px;
+  left: 160px;
+}
+
+#maze a.f3 {
+  left: 160px;
+  top: 400px;
+}
+
+#maze a.f3::before {
+  content: "Po";
+  top: -160px;
+  left: 80px;
+}
+
+#maze a.f4 {
+  left: 240px;
+  top: 400px;
+}
+
+#maze a.f4::before {
+  content: "Uk";
+  top: -160px;
+  left: 0px;
+}
+
+#maze a.f5 {
+  left: 320px;
+  top: 400px;
+}
+
+#maze a.f5::before {
+  content: "gH";
+  top: -160px;
+  left: -80px;
+}
+
+#maze a.f6 {
+  left: 400px;
+  top: 400px;
+}
+
+#maze a.f6::before {
+  content: "fY";
+  top: -160px;
+  left: -160px;
+}
+
+#maze a.f7 {
+  left: 480px;
+  top: 400px;
+}
+
+#maze a.f7::before {
+  content: "R0";
+  top: -160px;
+  left: -240px;
+}
+
+#maze a.g1 {
+  left: 0px;
+  top: 480px;
+}
+
+#maze a.g1::before {
+  content: "Z1";
+  top: -240px;
+  left: 240px;
+}
+
+#maze a.g2 {
+  left: 80px;
+  top: 480px;
+}
+
+#maze a.g2::before {
+  content: "9k";
+  top: -240px;
+  left: 160px;
+}
+
+#maze a.g3 {
+  left: 160px;
+  top: 480px;
+}
+
+#maze a.g3::before {
+  content: "X0";
+  top: -240px;
+  left: 80px;
+}
+
+#maze a.g4 {
+  left: 240px;
+  top: 480px;
+}
+
+#maze a.g4::before {
+  content: "YW";
+  top: -240px;
+  left: 0px;
+}
+
+#maze a.g5 {
+  left: 320px;
+  top: 480px;
+}
+
+#maze a.g5::before {
+  content: "5n";
+  top: -240px;
+  left: -80px;
+}
+
+#maze a.g6 {
+  left: 400px;
+  top: 480px;
+}
+
+#maze a.g6::before {
+  content: "9p";
+  top: -240px;
+  left: -160px;
+}
+
+#maze a.g7 {
+  left: 480px;
+  top: 480px;
+}
+
+#maze a.g7::before {
+  content: "Jl";
+  top: -240px;
+  left: -240px;
+}
+
+i.l1 {
+  top: 0;
+  right: 20px;
+}
+
+i.l2 {
+  top: 0;
+  right: 100px;
+}
+
+i.l3 {
+  top: 0;
+  right: 180px;
+}
+
+i.l4 {
+  top: 0;
+  right: 260px;
+}
+
+i.l5 {
+  top: 0;
+  right: 340px;
+}
+
+i.l6 {
+  top: 0;
+  right: 420px;
+}
+
+i.r1 {
+  top: 0;
+  left: 20px;
+}
+
+i.r2 {
+  top: 0;
+  left: 100px;
+}
+
+i.r3 {
+  top: 0;
+  left: 180px;
+}
+
+i.r4 {
+  top: 0;
+  left: 260px;
+}
+
+i.r5 {
+  top: 0;
+  left: 340px;
+}
+
+i.r6 {
+  top: 0;
+  left: 420px;
+}
+
+b.t1 {
+  bottom: 20px;
+  left: 0;
+}
+
+b.t2 {
+  bottom: 100px;
+  left: 0;
+}
+
+b.t3 {
+  bottom: 180px;
+  left: 0;
+}
+
+b.t4 {
+  bottom: 260px;
+  left: 0;
+}
+
+b.t5 {
+  bottom: 340px;
+  left: 0;
+}
+
+b.t6 {
+  bottom: 420px;
+  left: 0;
+}
+
+b.b1 {
+  top: 20px;
+  left: 0;
+}
+
+b.b2 {
+  top: 100px;
+  left: 0;
+}
+
+b.b3 {
+  top: 180px;
+  left: 0;
+}
+
+b.b4 {
+  top: 260px;
+  left: 0;
+}
+
+b.b5 {
+  top: 340px;
+  left: 0;
+}
+
+b.b6 {
+  top: 420px;
+  left: 0;
+}
+
+em.tl1 {
+  top: 0px;
+  right: 0px;
+  -webkit-transform-origin: top right;
+          transform-origin: top right;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+em.tl2 {
+  top: -80px;
+  right: 80px;
+  -webkit-transform-origin: top right;
+          transform-origin: top right;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+em.tl3 {
+  top: -160px;
+  right: 160px;
+  -webkit-transform-origin: top right;
+          transform-origin: top right;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+em.tl4 {
+  top: -240px;
+  right: 240px;
+  -webkit-transform-origin: top right;
+          transform-origin: top right;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+em.tl5 {
+  top: -320px;
+  right: 320px;
+  -webkit-transform-origin: top right;
+          transform-origin: top right;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+em.tl6 {
+  top: -400px;
+  right: 400px;
+  -webkit-transform-origin: top right;
+          transform-origin: top right;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+em.tr1 {
+  top: 0px;
+  left: 0px;
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+
+em.tr2 {
+  top: -80px;
+  left: 80px;
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+
+em.tr3 {
+  top: -160px;
+  left: 160px;
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+
+em.tr4 {
+  top: -240px;
+  left: 240px;
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+
+em.tr5 {
+  top: -320px;
+  left: 320px;
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+
+em.tr6 {
+  top: -400px;
+  left: 400px;
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+
+em.bl1 {
+  top: 40px;
+  left: 40px;
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+  -webkit-transform: rotate(135deg);
+          transform: rotate(135deg);
+}
+
+em.bl2 {
+  top: 120px;
+  left: -40px;
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+  -webkit-transform: rotate(135deg);
+          transform: rotate(135deg);
+}
+
+em.bl3 {
+  top: 200px;
+  left: -120px;
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+  -webkit-transform: rotate(135deg);
+          transform: rotate(135deg);
+}
+
+em.bl4 {
+  top: 280px;
+  left: -200px;
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+  -webkit-transform: rotate(135deg);
+          transform: rotate(135deg);
+}
+
+em.bl5 {
+  top: 360px;
+  left: -280px;
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+  -webkit-transform: rotate(135deg);
+          transform: rotate(135deg);
+}
+
+em.bl6 {
+  top: 440px;
+  left: -360px;
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+  -webkit-transform: rotate(135deg);
+          transform: rotate(135deg);
+}
+
+em.br1 {
+  top: 0px;
+  left: 40px;
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+em.br2 {
+  top: 80px;
+  left: 120px;
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+em.br3 {
+  top: 160px;
+  left: 200px;
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+em.br4 {
+  top: 240px;
+  left: 280px;
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+em.br5 {
+  top: 320px;
+  left: 360px;
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+em.br6 {
+  top: 400px;
+  left: 440px;
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+/*# sourceMappingURL=index.css.map */

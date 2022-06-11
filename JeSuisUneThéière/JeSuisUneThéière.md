@@ -95,4 +95,4 @@ C'est de la base64 qui donne le flag à encadrer :
 
 ## Source
 
-Vous trouverez dans [ce dossier]() le code source du challenge pour le retenter vous-même. Amusez-vous à speedrunner la théière, et qui sait, peut-être que _speedrun.com_ acceptera de faire une catégorie particulière !
+Vous trouverez dans [ce dossier](./source/) le code source du challenge pour le retenter vous-même. Amusez-vous à speedrunner la théière, et qui sait, peut-être que _speedrun.com_ acceptera de faire une catégorie particulière !
